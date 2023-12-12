@@ -6,6 +6,7 @@ import static java.util.UUID.randomUUID;
 import com.company.base.PojaGenerated;
 import com.company.base.endpoint.event.EventProducer;
 import com.company.base.endpoint.event.gen.UuidCreated;
+import com.company.base.file.BucketComponent;
 import com.company.base.repository.DummyRepository;
 import com.company.base.repository.DummyUuidRepository;
 import com.company.base.repository.model.Dummy;
