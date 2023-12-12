@@ -1,0 +1,130 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Wallet API"
+
+paths:
+  /accounts:
+    get:
+      summary: "List all accounts"
+      responses:
+        200:
+          description: "Successful operation"
+    post:
+      summary: "Create a new account"
+      responses:
+        201:
+          description: "Account created successfully"
+
+  /accounts/{accountId}:
+    get:
+      summary: "Get account details by ID"
+      parameters:
+        - name: "accountId"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Successful operation"
+        404:
+          description: "Account not found"
+    put:
+      summary: "Update account details by ID"
+      parameters:
+        - name: "accountId"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Account updated successfully"
+        404:
+          description: "Account not found"
+
+  /transactions:
+    get:
+      summary: "List all transactions"
+      responses:
+        200:
+          description: "Successful operation"
+    post:
+      summary: "Create a new transaction"
+      responses:
+        201:
+          description: "Transaction created successfully"
+
+  /transactions/{transactionId}:
+    get:
+      summary: "Get transaction details by ID"
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Successful operation"
+        404:
+          description: "Transaction not found"
+    put:
+      summary: "Update transaction details by ID"
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Transaction updated successfully"
+        404:
+          description: "Transaction not found"
+
+  /currencies:
+    get:
+      summary: "List all currencies"
+      responses:
+        200:
+          description: "Successful operation"
+definitions:
+  AccountInput:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      balance:
+        type: "number"
+
+  Account:
+    allOf:
+      - $ref: "#/definitions/AccountInput"
+      - type: "object"
+        properties:
+          id:
+            type: "integer"
+
+  TransactionInput:
+    type: "object"
+    properties:
+      description:
+        type: "string"
+      amount:
+        type: "number"
+
+  Transaction:
+    allOf:
+      - $ref: "#/definitions/TransactionInput"
+      - type: "object"
+        properties:
+          id:
+            type: "integer"
+          accountId:
+            type: "integer"
+
+  Currency:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+      name:
+        type: "string"
